@@ -1,0 +1,102 @@
+{
+ "search_metadata": {
+  "status": "Success"
+ },
+ "search_parameters": {
+  "engine": "meta_ad_library",
+  "page_id": "999000111"
+ },
+ "search_information": {
+  "total_results": 4
+ },
+ "ads": [
+  {
+   "ad_archive_id": "1000000001",
+   "page_id": "999000111",
+   "page_name": "Fuelwell",
+   "start_date": "2026-03-01",
+   "end_date": null,
+   "is_active": true,
+   "collation_count": 6,
+   "impressions_with_index": {
+    "impressions_text": null,
+    "impressions_index": -1
+   },
+   "snapshot": {
+    "body": {
+     "text": "Fuelwell oats ad copy number 1."
+    },
+    "cta_type": "SHOP_NOW",
+    "link_url": "https://fuelwell.example.test",
+    "display_format": "VIDEO",
+    "videos": [
+     {
+      "video_hd_url": "https://video.example.test/fw1.mp4",
+      "video_sd_url": null
+     }
+    ],
+    "cards": []
+   }
+  },
+  {
+   "ad_archive_id": "1000000002",
+   "page_id": "999000111",
+   "page_name": "Fuelwell",
+   "start_date": "2026-10-01",
+   "end_date": null,
+   "is_active": true,
+   "collation_count": 1,
+   "impressions_with_index": {
+    "impressions_text": null,
+    "impressions_index": -1
+   },
+   "snapshot": {
+    "body": {
+     "text": "Fuelwell oats ad copy number 2."
+    },
+    "cta_type": "SHOP_NOW",
+    "link_url": "https://fuelwell.example.test",
+    "display_format": "VIDEO",
+    "videos": [
+     {
+      "video_hd_url": "https://video.example.test/fw2.mp4",
+      "video_sd_url": null
+     }
+    ],
+    "cards": []
+   }
+  },
+  {
+   "ad_archive_id": "1000000003",
+   "page_id": "999000111",
+   "page_name": "Fuelwell",
+   "start_date": "2026-06-01",
+   "end_date": null,
+   "is_active": true,
+   "collation_count": 3,
+   "impressions_with_index": {
+    "impressions_text": null,
+    "impressions_index": -1
+   },
+   "snapshot": {
+    "body": {
+     "text": "Fuelwell oats ad copy number 3."
+    },
+    "cta_type": "SHOP_NOW",
+    "link_url": "https://fuelwell.example.test",
+    "display_format": "DCO",
+    "videos": [],
+    "cards": [
+     {
+      "video_hd_url": "https://video.example.test/fw3.mp4",
+      "video_sd_url": null,
+      "body": "card copy"
+     }
+    ]
+   }
+  }
+ ],
+ "pagination": {
+  "next_page_token": "TOKEN2"
+ }
+}

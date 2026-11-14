@@ -1,0 +1,57 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F8",
+    "name": "Us vs. them comparison"
+  },
+  "duration_s": 20,
+  "aspect": "9:16",
+  "format": "comparison_table",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "myth_bust",
+    "text_role": "sets up a fair fight that is obviously rigged",
+    "visual": "two-column table titled 'US' vs 'THEM'",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        14
+      ],
+      "role": "comparison",
+      "visual": "table fills row by row, check marks land on our side",
+      "line_role": "one criterion per row, each sillier"
+    },
+    {
+      "t": [
+        14,
+        17
+      ],
+      "role": "punchline",
+      "visual": "final row with an absurd criterion, we win",
+      "line_role": "the joke row"
+    },
+    {
+      "t": [
+        17,
+        20
+      ],
+      "role": "cta",
+      "visual": "product hero beside the finished table",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "confident corporate bed",
+    "sfx": [
+      "tick sound per row"
+    ],
+    "voice": "creator VO, dry"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

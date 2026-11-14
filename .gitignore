@@ -1,0 +1,11 @@
+.env.local
+.cache/
+.claude/sessions/
+node_modules/
+data/
+renders/*
+!renders/account.json
+dist/
+.env
+.env.*
+!.env.example

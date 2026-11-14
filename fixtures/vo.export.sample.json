@@ -1,0 +1,56 @@
+{
+  "slug": "plateful-fw1-demo",
+  "title": "Plateful",
+  "format": "ad",
+  "length": "ad",
+  "duration_target_s": 24.0,
+  "aspect": "9:16",
+  "aigc_label": true,
+  "source_rights": "original",
+  "lane": "ad",
+  "tone": "bright",
+  "style": "bright clean lifestyle illustration, soft daylight, warm neutrals with one leaf-green accent, 9:16",
+  "accent": "leaf green",
+  "accent_from_shot": 5,
+  "register": "[warm, quick, conversational; a friend recommending something that worked]",
+  "register_name": "creator",
+  "music": { "lane_cue": "upbeat lo-fi 100-110 bpm" },
+  "hooks": [
+    "Your meal plan isn't the problem.",
+    "The fridge is full. You still order takeout.",
+    "Meal prep doesn't fail on Sunday.",
+    "Groceries aren't why dinner goes wrong.",
+    "You don't need more recipes."
+  ],
+  "hook_pick": 0,
+  "hook_pattern": "contrarian_reveal",
+  "characters": {
+    "MAYA": "woman in her thirties, shoulder-length dark brown hair, warm brown skin, tired kind eyes, medium build"
+  },
+  "wardrobe": {
+    "MAYA": { "default": "oversized grey knit sweater, dark leggings" }
+  },
+  "sets": {
+    "KITCHEN": "INTERIOR ONLY: a small modern apartment kitchen, white cabinets, one window, flat white ceiling, light from the window",
+    "LIVING": "INTERIOR ONLY: a small apartment living room at night, grey sofa, floor lamp the only light, flat white ceiling, kitchen doorway lit behind",
+    "AISLE": "INTERIOR ONLY: one supermarket aisle, shelves of dry goods both sides, flat white ceiling, even overhead strip lights"
+  },
+  "shots": [
+    { "n": 1, "beat": "HOOK", "vo": "Your meal plan isn't the problem.", "set": "KITCHEN", "chars": [], "time": "night", "camera": "medium, eye level", "people": {}, "extras": "none", "wear": {}, "state": "fridge door OPEN", "prompt": "a full fridge door swung open, every shelf packed with untouched groceries, a takeout bag on the counter in front of it", "hook_device": "wrongness", "move": "push", "para": 0, "t_target": [0, 2.5] },
+    { "n": 2, "beat": "PROBLEM", "vo": "By Wednesday the fridge is full and you're ordering takeout again.", "set": "LIVING", "chars": ["MAYA"], "time": "night", "camera": "medium, slightly high", "people": { "MAYA": "on the sofa, tired, phone in one hand at chest height" }, "extras": "none", "wear": { "MAYA": "default" }, "prompt": "Maya scrolls a delivery app, the lit kitchen doorway behind her", "move": "push", "para": 1, "t_target": [2.5, 7] },
+    { "n": 3, "beat": "DEMO", "vo": "Plateful plans your whole week in two minutes, then builds one shopping list sorted by aisle.", "set": "AISLE", "chars": [], "time": "day", "camera": "close, eye level", "people": {}, "extras": "none", "wear": {}, "prompt": "close on a phone held upright showing a week of meals in a grid, the aisle soft behind it", "move": "static", "para": 2, "t_target": [7, 14] },
+    { "n": 4, "beat": "PROOF", "vo": "In our beta, testers went from four takeout nights a week to one.", "set": "KITCHEN", "chars": [], "time": "morning", "camera": "close, eye level", "people": {}, "extras": "none", "wear": {}, "prompt": "a paper kitchen calendar on the wall, four takeout stickers crossed out and one left", "card": "4 NIGHTS → 1", "move": "push", "para": 3, "t_target": [14, 20] },
+    { "n": 5, "beat": "CTA", "vo": "Plan your first week free for fourteen days.", "set": "KITCHEN", "chars": [], "time": "evening", "camera": "medium, slightly high", "people": {}, "extras": "none", "wear": {}, "prompt": "the phone on a clean counter beside a cooked dinner plate, app open on the week view, leaf-green app accent", "card": "14 DAYS FREE", "end_card": true, "move": "pull", "para": 4, "t_target": [20, 24] }
+  ],
+  "caption": "Your meal plan isn't the problem.\nPlateful: plan a week in 2 minutes. 14 days free.\n#mealprep #ad",
+  "hashtags": ["#mealprep", "#ad"],
+  "prompt_schema": 2,
+  "mixtape": {
+    "version": 1,
+    "source": { "platform": "meta", "ad_id": "fw1", "page_name": "Fuelwell", "days_running": 286, "variants": 14, "format": "demo_in_context" },
+    "structure_ref": "data/structures/fw1.structure.json",
+    "script_ref": "data/scripts/plateful-fw1-demo.script.json",
+    "checks": { "overlap_passed": true, "max_overlap_words": 3, "timing_within_10pct": true, "claims_in_brief": true },
+    "rules": "format only: no source lines, footage, audio, logos or likeness"
+  }
+}

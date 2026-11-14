@@ -1,0 +1,71 @@
+{
+ "search_metadata": {
+  "status": "Success"
+ },
+ "search_parameters": {
+  "engine": "meta_ad_library",
+  "page_id": "999000111"
+ },
+ "search_information": {
+  "total_results": 4
+ },
+ "ads": [
+  {
+   "ad_archive_id": "1000000004",
+   "page_id": "999000111",
+   "page_name": "Fuelwell",
+   "start_date": "2025-11-01",
+   "end_date": "2026-01-01",
+   "is_active": false,
+   "collation_count": 2,
+   "impressions_with_index": {
+    "impressions_text": null,
+    "impressions_index": -1
+   },
+   "snapshot": {
+    "body": {
+     "text": "Fuelwell oats ad copy number 4."
+    },
+    "cta_type": "SHOP_NOW",
+    "link_url": "https://fuelwell.example.test",
+    "display_format": "VIDEO",
+    "videos": [
+     {
+      "video_hd_url": "https://video.example.test/fw4.mp4",
+      "video_sd_url": null
+     }
+    ],
+    "cards": []
+   }
+  },
+  {
+   "ad_archive_id": "1000000001",
+   "page_id": "999000111",
+   "page_name": "Fuelwell",
+   "start_date": "2026-03-01",
+   "end_date": null,
+   "is_active": true,
+   "collation_count": 6,
+   "impressions_with_index": {
+    "impressions_text": null,
+    "impressions_index": -1
+   },
+   "snapshot": {
+    "body": {
+     "text": "Fuelwell oats ad copy number 1."
+    },
+    "cta_type": "SHOP_NOW",
+    "link_url": "https://fuelwell.example.test",
+    "display_format": "VIDEO",
+    "videos": [
+     {
+      "video_hd_url": "https://video.example.test/fw1.mp4",
+      "video_sd_url": null
+     }
+    ],
+    "cards": []
+   }
+  }
+ ],
+ "pagination": {}
+}

@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F14",
+    "name": "Expert reacts (greenscreen)"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "expert_reacts",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "contrarian_reveal",
+    "text_role": "an expert stops the viewer with a warning about something familiar",
+    "visual": "greenscreen: expert in front of a screenshot or clip, pointing",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        8
+      ],
+      "role": "authority",
+      "visual": "expert on greenscreen, credential lower-third",
+      "line_role": "establishes why to listen"
+    },
+    {
+      "t": [
+        8,
+        14
+      ],
+      "role": "problem",
+      "visual": "expert points at the background image, zoom-ins on details",
+      "line_role": "what everyone gets wrong"
+    },
+    {
+      "t": [
+        14,
+        19
+      ],
+      "role": "solution",
+      "visual": "background switches to the product, expert approves",
+      "line_role": "the expert's pick and why"
+    },
+    {
+      "t": [
+        19,
+        22
+      ],
+      "role": "cta",
+      "visual": "expert beside product, end card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "subtle tension bed",
+    "sfx": [
+      "pop on each zoom"
+    ],
+    "voice": "expert on camera, authoritative"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

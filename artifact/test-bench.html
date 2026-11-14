@@ -1,0 +1,444 @@
+<title>Mixtape Test Bench</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column of four "tracks" (source, break, hook, press), each a labelled band like a cassette J-card; beats read as a timed track list. */
+:root{
+  --paper:#eceef1; --panel:#f6f7f8; --ink:#1c2027; --muted:#5b6471; --line:#d0d5db;
+  --tape:#d9522a; --tape-ink:#f6f7f8; --ok:#2c7d55; --warn:#a86b12; --bad:#b33a3a; --chip:#e1e5ea;
+  --display:"Archivo",ui-sans-serif,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14171c; --panel:#1b1f26; --ink:#e4e7eb; --muted:#9aa3ae; --line:#2b313a;
+  --tape:#ee7a52; --tape-ink:#14171c; --ok:#5bb88a; --warn:#d9a24a; --bad:#e07070; --chip:#252a33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#14171c; --panel:#1b1f26; --ink:#e4e7eb; --muted:#9aa3ae; --line:#2b313a;
+  --tape:#ee7a52; --tape-ink:#14171c; --ok:#5bb88a; --warn:#d9a24a; --bad:#e07070; --chip:#252a33; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px}
+h1{font-size:30px;font-weight:800;font-stretch:78%;letter-spacing:.01em;margin:0;line-height:1}
+h1 span{color:var(--tape)}
+.sub{color:var(--muted);margin:4px 0 0;max-width:60ch}
+.status{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.track{background:var(--panel);border:1px solid var(--line);border-radius:6px;display:grid;grid-template-columns:120px 1fr;overflow:hidden}
+.label{background:var(--tape);color:var(--tape-ink);padding:14px 12px;display:flex;flex-direction:column;gap:2px}
+.label b{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.label strong{font-size:20px;font-weight:800;font-stretch:80%;line-height:1.1}
+.body{padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (max-width:640px){.track{grid-template-columns:1fr}.label{flex-direction:row;align-items:baseline;gap:10px}}
+h2{font-size:13px;font-family:var(--mono);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0}
+p{margin:0;max-width:68ch}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{font:inherit;font-weight:600;background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:6px 12px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;min-width:0}
+label.f small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=number],input[type=url],textarea{font:inherit;font-weight:400;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:8px 10px;width:100%}
+textarea{min-height:78px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button.go{font:inherit;font-weight:700;background:var(--ink);color:var(--paper);border:0;border-radius:4px;padding:9px 16px;cursor:pointer}
+button.go:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{font:inherit;font-weight:600;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:8px 12px;cursor:pointer}
+.note{font-size:13px;color:var(--muted)}
+.msg{font-size:13px;padding:8px 10px;border-radius:4px;border-left:3px solid var(--muted);background:var(--chip)}
+.msg.bad{border-color:var(--bad)} .msg.ok{border-color:var(--ok)} .msg.warn{border-color:var(--warn)}
+.frames{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.frames figure{margin:0;flex:0 0 auto;width:72px}
+.frames img{width:72px;height:128px;object-fit:cover;border-radius:3px;border:1px solid var(--line);display:block}
+.frames figcaption{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
+video{max-width:100%;max-height:260px;border-radius:4px;background:var(--chip)}
+.tl{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.beat{display:grid;grid-template-columns:34px 112px 92px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.beat .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.beat .t{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.role{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--chip);justify-self:start}
+.role.hook{background:var(--tape);color:var(--tape-ink)}
+.beat .d{min-width:0}
+.beat .d .line{font-weight:600}
+.beat .d .vis{color:var(--muted);font-size:13px}
+.beat .d .meta{font-family:var(--mono);font-size:11px;margin-top:2px}
+@media (max-width:640px){.beat{grid-template-columns:28px 1fr}.beat .t,.beat .role{grid-column:2}.beat .d{grid-column:1/-1}}
+.facts{display:flex;flex-wrap:wrap;gap:6px}
+.facts span{font-family:var(--mono);font-size:12px;background:var(--chip);border-radius:3px;padding:2px 8px}
+.hooks{display:flex;flex-direction:column;gap:6px}
+.hook{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:var(--paper);cursor:pointer}
+.hook input{margin:0;accent-color:var(--tape)}
+.hook .txt{font-weight:600;min-width:0}
+.hook .sc{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hook.dropped{opacity:.5;cursor:default}
+.ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+summary{cursor:pointer;padding:8px 10px;font-family:var(--mono);font-size:12px}
+pre{margin:0;padding:10px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.45;max-height:360px}
+.example{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--warn)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div>
+    <h1>MIX<span>TAPE</span> test bench</h1>
+    <p class="sub">Clone a proven ad format into a new ad. Bring a source ad, break it into a format, write hooks, press a new ad from your brief, then download the files for <code>mixtape render</code>.</p>
+  </div>
+  <div class="status" id="status">Loading Claude…</div>
+</header>
+
+<section class="track" aria-labelledby="t1">
+  <div class="label"><b>Track 1</b><strong id="t1">Source</strong></div>
+  <div class="body">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-upload" aria-selected="true" data-mode="upload">Upload video</button>
+      <button class="tab" role="tab" id="tab-link" aria-selected="false" data-mode="link">Link</button>
+      <button class="tab" role="tab" id="tab-describe" aria-selected="false" data-mode="describe">Describe it</button>
+    </div>
+
+    <div id="m-upload" class="body" style="padding:0">
+      <label class="f">Ad video <small>MP4 or MOV. It stays in your browser; only still frames go to Claude.</small>
+        <input type="file" id="file" accept="video/*"></label>
+      <video id="preview" controls muted playsinline hidden></video>
+      <div class="frames" id="frames"></div>
+    </div>
+
+    <div id="m-link" class="body" style="padding:0" hidden>
+      <label class="f">Link to the ad <small>Kept as the source reference.</small>
+        <input type="url" id="link" placeholder="https://www.facebook.com/ads/library/?id=…"></label>
+      <p class="msg warn">This page can't load videos from other sites. Download the video and use Upload, or run <code>mixtape break &lt;url&gt;</code> in the CLI, which can.</p>
+    </div>
+
+    <div id="m-describe" class="body" style="padding:0" hidden>
+      <label class="f">Describe the ad's format <small>Shot by shot, with rough times. No video needed.</small>
+        <textarea id="describe" placeholder="0-2s: a gym bag tossed onto a bench, text says the obvious choice is wrong. 2-7s: …"></textarea></label>
+      <label class="f" style="max-width:200px">Length (seconds)<input type="number" id="dur" min="5" max="120" step="0.5" value="24"></label>
+    </div>
+
+    <div class="row">
+      <label class="f">Advertiser <small>optional</small><input type="text" id="page" placeholder="Fuelwell"></label>
+      <label class="f">Days running <small>optional</small><input type="number" id="days" min="0" placeholder="286"></label>
+      <label class="f">Variants <small>optional</small><input type="number" id="variants" min="1" placeholder="14"></label>
+    </div>
+    <label class="f">Transcript <small>Optional but recommended: the originality check compares your script against it. Paste what's said and the on-screen text.</small>
+      <textarea id="transcript"></textarea></label>
+  </div>
+</section>
+
+<section class="track" aria-labelledby="t2">
+  <div class="label"><b>Track 2</b><strong id="t2">Break</strong></div>
+  <div class="body">
+    <div class="btns"><button class="go" id="do-break">Break it down</button><span class="note" id="break-note">Turns the source into a format: roles, timing and patterns. No original lines are kept.</span></div>
+    <div id="break-msg"></div>
+    <div id="structure-view"></div>
+  </div>
+</section>
+
+<section class="track" aria-labelledby="t3">
+  <div class="label"><b>Track 3</b><strong id="t3">Hook</strong></div>
+  <div class="body">
+    <label class="f">Topic <small>What your ad is about, in a few words.</small><input type="text" id="topic" value="meal prep"></label>
+    <div class="btns"><button class="go" id="do-hook">Write 10 hooks</button><span class="note">Scored on scroll, curiosity and fit; the top 5 are kept.</span></div>
+    <div id="hook-msg"></div>
+    <div class="hooks" id="hooks"></div>
+  </div>
+</section>
+
+<section class="track" aria-labelledby="t4">
+  <div class="label"><b>Track 4</b><strong id="t4">Press</strong></div>
+  <div class="body">
+    <label class="f">Brief <small>Your product, the facts a proof line may use, and the offer. Claims come only from here.</small>
+      <textarea id="brief">Plateful plans a week of meals in 2 minutes and builds one shopping list sorted by aisle. In a 2026 beta, testers went from 4 takeout nights a week to 1. Offer: 14-day free trial.</textarea></label>
+    <label class="f">Look <small>Style line for the stills.</small>
+      <input type="text" id="style" value="bright clean lifestyle illustration, soft daylight, warm neutrals with one leaf-green accent, 9:16"></label>
+    <div class="btns"><button class="go" id="do-press">Press a new ad</button><span class="note">One line and one shot per beat, same roles and times.</span></div>
+    <div id="press-msg"></div>
+    <div id="script-view"></div>
+    <div class="btns">
+      <button class="ghost" id="dl-structure">Download structure.json</button>
+      <button class="ghost" id="dl-script">Download script.json</button>
+      <span class="note" id="dl-note"></span>
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const WPS=2.5, FRAMES=10;
+const PATTERNS=["contrarian_reveal","stop_doing_x","pov","day_in_life","number_shock","sensory","myth_bust","announcement","testimonial"];
+let sample=null, downloads=null, imagesOK=false, maxImages=FRAMES;
+let mode="upload", frames=[], duration=null, fileName=null;
+
+// Example state (fictional brand from the project fixtures), shown until the viewer runs their own.
+let structure={
+  source:{platform:"meta",kind:"example",ad_id:"fw1",page_name:"Fuelwell",days_running:286,variants:14},
+  duration_s:24, aspect:"9:16", format:"demo_in_context",
+  hook:{t:[0,2.5],pattern:"contrarian_reveal",text_role:"denies the obvious answer",candidates:[]},
+  beats:[
+    {t:[2.5,7],role:"problem",visual:"close-up, relatable frustration",caption_style:"bold white, 2 lines, center-safe"},
+    {t:[7,14],role:"demo",visual:"product in real use, handheld"},
+    {t:[14,20],role:"proof",visual:"result on screen, number overlay"},
+    {t:[20,24],role:"cta",visual:"product hero + offer card"}],
+  audio:{music:"upbeat lo-fi 100-110 bpm",sfx:["whoosh on cuts"],voice:"creator VO"},
+  rules:"roles and patterns only - no original lines, footage, audio or likeness"
+};
+let hooks=[
+  {text:"Your meal plan isn't the problem.",scroll:8,curiosity:8,fit:9},
+  {text:"The fridge is full. You still order takeout.",scroll:8,curiosity:7,fit:8},
+  {text:"Meal prep doesn't fail on Sunday.",scroll:7,curiosity:8,fit:6},
+  {text:"Groceries aren't why dinner goes wrong.",scroll:7,curiosity:7,fit:6},
+  {text:"You don't need more recipes.",scroll:7,curiosity:6,fit:7}].map(h=>({...h,score:score(h)}));
+let pick=0;
+let script={
+  brief:$("brief").value,
+  hook:{t:[0,2.5],line:"Your meal plan isn't the problem.",visual:"a full fridge door swung open, every shelf packed with untouched groceries, a takeout bag on the counter in front of it",camera:"medium, eye level",time:"night"},
+  beats:[
+    {t:[2.5,7],role:"problem",line:"By Wednesday the fridge is full and you're ordering takeout again.",visual:"a tired woman in her thirties on a sofa at night scrolling a delivery app, kitchen lit behind her",camera:"medium, slightly high",time:"night"},
+    {t:[7,14],role:"demo",line:"Plateful plans your whole week in two minutes, then builds one shopping list sorted by aisle.",visual:"close on a phone held upright showing a week of meals, a supermarket aisle soft behind it",camera:"close, eye level",time:"day"},
+    {t:[14,20],role:"proof",line:"In our beta, testers went from four takeout nights a week to one.",visual:"a kitchen calendar with four takeout stickers crossed out and one left",camera:"close, eye level",time:"morning"},
+    {t:[20,24],role:"cta",line:"Plan your first week free for fourteen days.",visual:"the phone on a clean counter beside a cooked dinner plate, app open on the week view",camera:"medium, slightly high",time:"evening"}],
+  style_lock:{style_prompt:$("style").value,reference_image:null},
+  checks:{}
+};
+let isExample=true;
+
+function score(h){return Math.round((0.45*h.scroll+0.35*h.curiosity+0.2*h.fit)*10)/10}
+function fmt(s){s=Number(s)||0;const m=Math.floor(s/60),r=s-m*60;return m+":"+(r<10?"0":"")+r.toFixed(r%1?1:0)}
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+function msg(id,text,kind){const box=$(id);box.textContent="";if(!text)return;const m=el("div","msg "+(kind||""),text);box.append(m)}
+function words(s){return (String(s||"").toLowerCase().match(/[a-z0-9']+/g)||[])}
+
+// Longest run of consecutive words a line shares with the transcript.
+function longestShared(line,src){
+  const a=words(line),b=words(src);if(!a.length||!b.length)return 0;
+  let best=0;const prev=new Array(b.length+1).fill(0);
+  for(let i=1;i<=a.length;i++){let diag=0;for(let j=1;j<=b.length;j++){const tmp=prev[j];prev[j]=a[i-1]===b[j-1]?diag+1:0;if(prev[j]>best)best=prev[j];diag=tmp}}
+  return best;
+}
+
+function renderStructure(){
+  const v=$("structure-view");v.textContent="";
+  const s=structure;
+  const top=el("div","btns");
+  if(isExample)top.append(el("span","example","Example · fictional brand"));
+  const facts=el("div","facts");
+  [["format",s.format],["length",fmt(s.duration_s)],["aspect",s.aspect],["hook",s.hook?.pattern],
+   s.source?.page_name&&["from",s.source.page_name],s.source?.days_running&&["running",s.source.days_running+" days"],
+   s.source?.variants&&["variants",s.source.variants]].filter(Boolean).forEach(([k,val])=>facts.append(el("span",null,k+": "+val)));
+  top.append(facts);v.append(top);
+  const tl=el("div","tl");
+  const rows=[{t:s.hook?.t,role:"hook",visual:s.hook?.text_role}, ...(s.beats||[])];
+  rows.forEach((b,i)=>{
+    const r=el("div","beat");
+    r.append(el("span","n",String(i+1).padStart(2,"0")));
+    r.append(el("span","t",fmt(b.t?.[0])+"–"+fmt(b.t?.[1])));
+    r.append(el("span","role"+(i===0?" hook":""),b.role||"beat"));
+    const d=el("div","d");d.append(el("div","vis",b.visual||""));
+    if(b.caption_style)d.append(el("div","meta","captions: "+b.caption_style));
+    r.append(d);tl.append(r);
+  });
+  v.append(tl);
+  if(s.audio){const a=el("p","note","Audio: "+[s.audio.music,(s.audio.sfx||[]).join(", "),s.audio.voice].filter(Boolean).join(" · "));v.append(a)}
+  const det=el("details");det.append(el("summary",null,"structure.json"));det.append(el("pre",null,JSON.stringify(withCandidates(),null,2)));v.append(det);
+}
+function withCandidates(){return {...structure,hook:{...structure.hook,candidates:hooks.map(h=>({text:h.text,score:h.score}))}}}
+
+function renderHooks(all){
+  const box=$("hooks");box.textContent="";
+  const list=all||hooks;
+  list.forEach((h,i)=>{
+    const kept=!all||hooks.includes(h);
+    const row=el("label","hook"+(kept?"":" dropped"));
+    const r=document.createElement("input");r.type="radio";r.name="hookpick";r.disabled=!kept;
+    const idx=hooks.indexOf(h);r.checked=idx===pick;r.addEventListener("change",()=>{pick=idx});
+    row.append(r,el("span","txt",h.text),el("span","sc",kept?`${h.score} · s${h.scroll} c${h.curiosity} f${h.fit}`:`${h.score} · dropped`));
+    box.append(row);
+  });
+}
+
+function renderScript(){
+  const v=$("script-view");v.textContent="";
+  const src=$("transcript").value.trim();
+  const rows=[{...script.hook,role:"hook"},...(script.beats||[])];
+  let maxShared=0,timingOK=true,worst=0;
+  const top=el("div","btns");if(isExample)top.append(el("span","example","Example · fictional brand"));v.append(top);
+  const tl=el("div","tl");
+  rows.forEach((b,i)=>{
+    const win=(b.t?.[1]??0)-(b.t?.[0]??0);const w=words(b.line).length;const pred=w/WPS;
+    const off=win?Math.abs(pred-win)/win:0;worst=Math.max(worst,off);
+    const shared=src?longestShared(b.line,src):0;maxShared=Math.max(maxShared,shared);
+    const r=el("div","beat");
+    r.append(el("span","n",String(i+1).padStart(2,"0")));
+    r.append(el("span","t",fmt(b.t?.[0])+"–"+fmt(b.t?.[1])));
+    r.append(el("span","role"+(i===0?" hook":""),b.role));
+    const d=el("div","d");d.append(el("div","line",b.line||""));
+    d.append(el("div","vis",[b.visual,b.camera,b.time].filter(Boolean).join(" · ")));
+    const m=el("div","meta");
+    const tcls=off<=0.15?"ok":off<=0.3?"warn":"bad";
+    m.append(el("span",tcls,`${w} words ≈ ${pred.toFixed(1)}s of ${win.toFixed(1)}s`));
+    if(src){m.append(document.createTextNode(" · "));m.append(el("span",shared>6?"bad":"ok",`longest shared run: ${shared} words`))}
+    d.append(m);r.append(d);tl.append(r);
+  });
+  v.append(tl);
+  const total=rows.reduce((a,b)=>a+words(b.line).length,0)/WPS, dur=structure.duration_s||rows.at(-1)?.t?.[1]||0;
+  timingOK=dur?Math.abs(total-dur)/dur<=0.10:false;
+  script.checks={overlap_passed:src?maxShared<=6:null,max_overlap_words:src?maxShared:null,timing_within_10pct:timingOK,predicted_s:Math.round(total*10)/10,target_s:dur,claims_in_brief:"check by eye"};
+  const sum=el("p","msg "+((script.checks.overlap_passed===false||!timingOK)?"warn":"ok"),
+    `Voice ≈ ${total.toFixed(1)}s of ${dur}s (${timingOK?"within":"outside"} ±10%). `+
+    (src?(maxShared>6?`Blocked: a line shares ${maxShared} words in a row with the source. Rewrite it before render.`:`Originality passed: longest shared run ${maxShared} words (limit 6).`)
+        :"No transcript, so the originality check was skipped. Paste one in Track 1 to run it.")+
+    " Proof lines must use facts from the brief; check them by eye.");
+  v.append(sum);
+  const det=el("details");det.append(el("summary",null,"script.json"));det.append(el("pre",null,JSON.stringify(script,null,2)));v.append(det);
+}
+
+// ---------- Source ----------
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+  mode=t.dataset.mode;
+  document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",String(x===t)));
+  ["upload","link","describe"].forEach(m=>$("m-"+m).hidden=m!==mode);
+  updateBreakNote();
+}));
+
+function once(target,ev){return new Promise((res,rej)=>{target.addEventListener(ev,res,{once:true});target.addEventListener("error",()=>rej(new Error("video")),{once:true})})}
+
+$("file").addEventListener("change",async e=>{
+  const f=e.target.files?.[0];if(!f)return;
+  fileName=f.name;frames=[];$("frames").textContent="";msg("break-msg","Reading frames…");
+  const url=URL.createObjectURL(f);const pv=$("preview");pv.src=url;pv.hidden=false;
+  try{
+    const v=document.createElement("video");v.muted=true;v.preload="auto";v.src=url;
+    await once(v,"loadedmetadata");duration=Math.round(v.duration*10)/10;$("dur").value=duration;
+    const n=Math.min(FRAMES,maxImages);const scale=Math.min(1,720/Math.max(v.videoWidth,v.videoHeight));
+    const c=document.createElement("canvas");c.width=Math.round(v.videoWidth*scale);c.height=Math.round(v.videoHeight*scale);const g=c.getContext("2d");
+    for(let i=0;i<n;i++){
+      const t=Math.min(v.duration-0.05,(i+0.5)*v.duration/n);v.currentTime=t;await once(v,"seeked");
+      g.drawImage(v,0,0,c.width,c.height);
+      const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",0.82));
+      frames.push({t:Math.round(t*10)/10,blob});
+      const fig=el("figure");const img=el("img");img.alt="frame at "+fmt(t);img.src=URL.createObjectURL(blob);fig.append(img,el("figcaption",null,fmt(t)));$("frames").append(fig);
+    }
+    msg("break-msg",`${frames.length} frames from ${fmt(duration)} of video. Ready to break down.`,"ok");
+  }catch(err){msg("break-msg","This file couldn't be read as a video. Try an MP4 (H.264).","bad")}
+  updateBreakNote();
+});
+
+function updateBreakNote(){
+  const b=$("do-break");
+  if(!sample){b.disabled=true;return}
+  if(mode==="upload"){b.disabled=!frames.length||!imagesOK;if(!imagesOK)$("break-note").textContent="This view can't send images to Claude. Use Describe it instead."}
+  else if(mode==="link"){b.disabled=true}
+  else b.disabled=false;
+}
+
+// ---------- Claude calls ----------
+function sourceInfo(){
+  const o={platform:mode==="link"?"link":mode,ad_id:mode==="link"?$("link").value||null:fileName,page_name:$("page").value||null,
+    days_running:Number($("days").value)||null,variants:Number($("variants").value)||null};
+  return o;
+}
+function errText(e){
+  const m={not_granted:"Claude access wasn't allowed for this page.",rate_limited:"Too many requests right now. Wait a minute and try again.",
+    invalid_json:"Claude's answer wasn't valid JSON. Try again.",images_unavailable:"This view can't send images. Use Describe it.",
+    image_rejected:"A frame was rejected. Try a different video.",session_expired:"Sign in to Claude again, then retry.",refused:"Claude declined this input. Change it and retry.",cancelled:"Stopped."};
+  return m[e?.code]||"Something went wrong reaching Claude. Try again.";
+}
+
+$("do-break").addEventListener("click",async()=>{
+  const btn=$("do-break");btn.disabled=true;msg("break-msg","Breaking it down… (30-90 s)");
+  const dur=Number($("dur").value)||duration||24;const tr=$("transcript").value.trim().slice(0,6000);
+  const shape='{"format":"snake_case name e.g. demo_in_context, founder_talking_head, pov_relatable","aspect":"9:16","duration_s":number,'+
+    '"hook":{"t":[start,end],"pattern":"one of '+PATTERNS.join(", ")+' or a new snake_case name","text_role":"what the hook line DOES, e.g. denies the obvious answer"},'+
+    '"beats":[{"t":[start,end],"role":"problem|demo|proof|transformation|testimonial|offer|cta|other","visual":"generic shot description: shot size, subject type, camera, setting","caption_style":"how on-screen text looks and sits"}],'+
+    '"audio":{"music":"genre and tempo","sfx":["..."],"voice":"creator VO | on-camera talking head | none"}}';
+  const rules="Rules: describe ROLES and PATTERNS only. Never copy any spoken line, on-screen text, brand name, product name, price or a person's identity. "+
+    "Describe visuals generically. The hook starts at 0. Beats follow the hook with no gaps and end at duration_s. 3 to 7 beats. Return JSON only, exactly this shape: "+shape;
+  let prompt,opts={modelTier:"complex"};
+  if(mode==="upload"){
+    prompt=`You break down a proven short-form video ad into a reusable FORMAT that another brand can fill with entirely new content.\n`+
+      `The images are ${frames.length} frames sampled in order at these times (seconds): ${frames.map(f=>f.t).join(", ")}. Total length ${dur}s.\n`+
+      (tr?`Transcript and on-screen text (for timing and roles only, do not copy):\n${tr}\n`:"No transcript; infer roles from the frames and any on-screen text.\n")+rules;
+    opts.images=frames.map(f=>f.blob);
+  }else{
+    prompt=`You break down a proven short-form video ad into a reusable FORMAT that another brand can fill with entirely new content.\n`+
+      `The ad is ${dur}s long. Description of the ad:\n${$("describe").value.slice(0,6000)}\n`+(tr?`Transcript (do not copy):\n${tr}\n`:"")+rules;
+  }
+  try{
+    const r=await sample.json(prompt,opts);
+    if(!r||!r.hook||!Array.isArray(r.beats))throw {code:"invalid_json"};
+    structure={source:{...sourceInfo(),kind:mode},duration_s:Number(r.duration_s)||dur,aspect:r.aspect||"9:16",format:r.format,
+      hook:{t:r.hook.t,pattern:r.hook.pattern,text_role:r.hook.text_role,candidates:[]},beats:r.beats,audio:r.audio,
+      rules:"roles and patterns only - no original lines, footage, audio or likeness"};
+    isExample=false;hooks=[];script={brief:"",hook:{},beats:[],style_lock:{},checks:{}};
+    renderStructure();$("hooks").textContent="";$("script-view").textContent="";
+    msg("break-msg","Format ready. Next: write hooks in Track 3.","ok");
+  }catch(e){msg("break-msg",errText(e),"bad")}
+  finally{updateBreakNote()}
+});
+
+$("do-hook").addEventListener("click",async()=>{
+  const btn=$("do-hook");btn.disabled=true;msg("hook-msg","Writing 10 hooks…");
+  const s=structure;
+  const prompt=`You are a short-form ad hook writer. Write 10 original hooks (max 12 words each) for this topic: ${$("topic").value}. `+
+    `They must follow this hook pattern from a proven long-running ad: ${s.hook?.pattern} (role: ${s.hook?.text_role}). Format of the source ad: ${s.format}. `+
+    `Score each 1-10 on scroll, curiosity, fit. Be a harsh judge; spread scores. Return JSON only: {"hooks":[{"text","scroll","curiosity","fit"}]}`;
+  try{
+    const r=await sample.json(prompt,{cache:false});
+    const all=(r?.hooks||[]).filter(h=>h&&h.text).map(h=>({text:String(h.text),scroll:+h.scroll||0,curiosity:+h.curiosity||0,fit:+h.fit||0})).map(h=>({...h,score:score(h)}));
+    if(!all.length)throw {code:"invalid_json"};
+    all.sort((a,b)=>b.score-a.score);hooks=all.slice(0,5);pick=0;isExample=false;
+    renderHooks(all);renderStructure();msg("hook-msg",`${all.length} written, top 5 kept. Pick one, then press it.`,"ok");
+  }catch(e){msg("hook-msg",errText(e),"bad")}
+  finally{btn.disabled=!sample}
+});
+
+$("do-press").addEventListener("click",async()=>{
+  if(!hooks.length){msg("press-msg","Write hooks first.","warn");return}
+  const btn=$("do-press");btn.disabled=true;msg("press-msg","Adapting… (30-90 s)");
+  const s=structure;const hook=hooks[pick]?.text||hooks[0].text;
+  const st={format:s.format,duration_s:s.duration_s,hook:{t:s.hook.t,pattern:s.hook.pattern,text_role:s.hook.text_role},beats:s.beats.map(b=>({t:b.t,role:b.role,visual:b.visual})),audio:s.audio};
+  const prompt=`You adapt proven ad FORMATS into new, fully original ads. Never reuse source wording. Structure: ${JSON.stringify(st)}. Chosen hook line: ${hook}. Brief: ${$("brief").value}. `+
+    `Write one spoken/caption line per beat that fits its time window (~2.5 words/sec), and a concrete shot description for our AI video generator (subject, camera, setting, lighting). Keep beat roles and times exactly. `+
+    `Any claim, number or result must come from the brief; invent none. No real brand names except the product in the brief. `+
+    `Return JSON only: {"hook":{"line","visual","camera","time"},"beats":[{"role","line","visual","camera","time"}]} where camera is shot size and angle and time is day, night, morning or evening.`;
+  try{
+    const r=await sample.json(prompt,{modelTier:"complex",cache:false});
+    if(!r?.hook||!Array.isArray(r.beats))throw {code:"invalid_json"};
+    script={brief:$("brief").value,source:{...s.source,format:s.format,duration_s:s.duration_s},
+      hook:{t:s.hook.t,pattern:s.hook.pattern,line:r.hook.line||hook,visual:r.hook.visual,camera:r.hook.camera,time:r.hook.time},
+      hook_candidates:hooks.map(h=>({text:h.text,score:h.score})),
+      beats:s.beats.map((b,i)=>({t:b.t,role:b.role,line:r.beats[i]?.line||"",visual:r.beats[i]?.visual||"",camera:r.beats[i]?.camera,time:r.beats[i]?.time})),
+      style_lock:{style_prompt:$("style").value,reference_image:null},audio:{music:s.audio?.music,voice:s.audio?.voice},checks:{}};
+    isExample=false;renderScript();msg("press-msg","Script ready. Check the timing and originality notes, then download.","ok");
+  }catch(e){msg("press-msg",errText(e),"bad")}
+  finally{btn.disabled=!sample}
+});
+
+// ---------- Downloads ----------
+async function save(name,obj){
+  if(downloads){try{await downloads.save({filename:name,data:new Blob([JSON.stringify(obj,null,2)],{type:"application/json"})});$("dl-note").textContent="Saved "+name+".";return}catch(e){if(e?.code==="cancelled"||e?.code==="declined"){$("dl-note").textContent="Not saved.";return}}}
+  try{await navigator.clipboard.writeText(JSON.stringify(obj,null,2));$("dl-note").textContent="Downloads aren't available here, so "+name+" was copied to your clipboard."}
+  catch{$("dl-note").textContent="Open the "+name+" panel above and copy it."}
+}
+$("dl-structure").addEventListener("click",()=>save((structure.format||"structure")+".structure.json",withCandidates()));
+$("dl-script").addEventListener("click",()=>{renderScript();save("script.json",script)});
+$("transcript").addEventListener("change",()=>{if(script.beats?.length)renderScript()});
+
+// ---------- Boot ----------
+renderStructure();renderHooks();renderScript();
+["do-break","do-hook","do-press"].forEach(id=>$(id).disabled=true);
+(async()=>{
+  if(!window.claude){$("status").textContent="Open this page on claude.ai to run Claude.";return}
+  sample=await claude.use("sample");
+  downloads=await claude.use("downloads");
+  if(!sample){$("status").textContent="Claude isn't available in this view. The example stays visible.";return}
+  const lim=await sample.limits().catch(()=>null);
+  imagesOK=!!lim?.images;maxImages=lim?.images?.maxCount||0;
+  $("status").textContent="Claude ready"+(imagesOK?` · up to ${maxImages} frames`:" · text only");
+  $("do-hook").disabled=false;$("do-press").disabled=false;updateBreakNote();
+})();
+</script>

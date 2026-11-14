@@ -1,0 +1,64 @@
+{
+  "brief": "Plateful plans a week of meals in 2 minutes and builds one shopping list sorted by aisle. In a 2026 beta, testers went from 4 takeout nights a week to 1. Offer: 14-day free trial.",
+  "structure": {
+    "ref": "fuelwell-fw1",
+    "format": "demo_in_context",
+    "source": { "kind": "upload", "file_name": "fuelwell-fw1.mp4" },
+    "duration_s": 24,
+    "aspect": "9:16"
+  },
+  "hook": {
+    "t": [0, 2.5],
+    "pattern": "contrarian_reveal",
+    "line": "Your meal plan isn't the problem.",
+    "visual": "a full fridge door swung open, every shelf packed with untouched groceries, a takeout bag on the counter in front of it",
+    "shot": { "set": "KITCHEN", "time": "night", "camera": "medium, eye level", "people": {}, "extras": "none", "wear": {}, "state": "fridge door OPEN, takeout bag on the counter" }
+  },
+  "hook_candidates": [
+    { "text": "Your meal plan isn't the problem.", "score": 8.1 },
+    { "text": "The fridge is full. You still order takeout.", "score": 7.6 },
+    { "text": "Meal prep doesn't fail on Sunday.", "score": 7.2 },
+    { "text": "Groceries aren't why dinner goes wrong.", "score": 6.8 },
+    { "text": "You don't need more recipes.", "score": 6.5 }
+  ],
+  "beats": [
+    {
+      "t": [2.5, 7],
+      "role": "problem",
+      "line": "By Wednesday the fridge is full and you're ordering takeout again.",
+      "visual": "Maya on the sofa at night scrolling a delivery app, the lit kitchen doorway behind her",
+      "shot": { "set": "LIVING", "time": "night", "camera": "medium, slightly high", "people": { "MAYA": "on the sofa, tired, phone in one hand at chest height" }, "extras": "none", "wear": { "MAYA": "default" } }
+    },
+    {
+      "t": [7, 14],
+      "role": "demo",
+      "line": "Plateful plans your whole week in two minutes, then builds one shopping list sorted by aisle.",
+      "visual": "close on a phone held upright showing a week of meals in a grid, the aisle soft behind it",
+      "shot": { "set": "AISLE", "time": "day", "camera": "close, eye level", "people": {}, "extras": "none", "wear": {}, "state": "phone screen shows a 7-day meal grid" }
+    },
+    {
+      "t": [14, 20],
+      "role": "proof",
+      "line": "In our beta, testers went from four takeout nights a week to one.",
+      "visual": "a paper wall calendar filling the whole frame, one week row with four takeout stickers in a line: the first three each crossed out with a thick black X, the fourth left uncrossed, morning light",
+      "shot": { "set": "KITCHEN", "time": "morning", "camera": "extreme close-up, straight on, the calendar fills the frame, no room visible", "people": {}, "extras": "none", "wear": {}, "state": "exactly three of four stickers crossed out" }
+    },
+    {
+      "t": [20, 24],
+      "role": "cta",
+      "line": "Plan your first week free for fourteen days.",
+      "visual": "the phone on a clean counter beside a cooked dinner plate, app open on the week view, space for an offer card at the top",
+      "shot": { "set": "KITCHEN", "time": "evening", "camera": "medium close, slightly high", "people": {}, "extras": "none", "wear": {}, "state": "dinner plated, phone face up" }
+    }
+  ],
+  "cast": { "MAYA": "woman in her thirties, shoulder-length dark brown hair, warm brown skin, tired kind eyes, medium build" },
+  "wardrobe": { "MAYA": { "default": "oversized grey knit sweater, dark leggings" } },
+  "sets": {
+    "KITCHEN": "INTERIOR ONLY: a small modern apartment kitchen, white cabinets, one window, flat white ceiling, light from the window",
+    "LIVING": "INTERIOR ONLY: a small apartment living room at night, grey sofa, floor lamp the only light, flat white ceiling, kitchen doorway lit behind",
+    "AISLE": "INTERIOR ONLY: one supermarket aisle, shelves of dry goods both sides, flat white ceiling, even overhead strip lights"
+  },
+  "style_lock": { "style_prompt": "bright clean lifestyle illustration, soft daylight, warm neutrals with one leaf-green accent, 9:16", "reference_image": null },
+  "audio": { "music": "upbeat lo-fi 100-110 bpm", "sfx": ["whoosh on cuts"], "voice": "creator VO" },
+  "checks": { "overlap_passed": true, "max_overlap_words": 0, "timing_within_10pct": true, "claims_in_brief": true }
+}

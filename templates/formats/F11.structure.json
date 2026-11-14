@@ -1,0 +1,67 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F11",
+    "name": "Street interview"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "street_interview",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "pov",
+    "text_role": "stops a stranger with a simple question",
+    "visual": "handheld street shot, interviewer mic in frame, lower-third question",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        9
+      ],
+      "role": "setup",
+      "visual": "stranger answers on camera, interviewer off-frame",
+      "line_role": "their honest, slightly confused answer"
+    },
+    {
+      "t": [
+        9,
+        15
+      ],
+      "role": "demo",
+      "visual": "interviewer hands over the product, stranger tries it",
+      "line_role": "first reaction"
+    },
+    {
+      "t": [
+        15,
+        19
+      ],
+      "role": "reveal",
+      "visual": "stranger's reaction close-up, quick zoom",
+      "line_role": "the turn: they get it"
+    },
+    {
+      "t": [
+        19,
+        22
+      ],
+      "role": "cta",
+      "visual": "product held to camera by the stranger, end card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "street ambience, light beat underneath",
+    "sfx": [
+      "crowd noise",
+      "mic bump"
+    ],
+    "voice": "interviewer + interviewee voices, natural"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F2",
+    "name": "POV relatable"
+  },
+  "duration_s": 18,
+  "aspect": "9:16",
+  "format": "pov_relatable",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "pov",
+    "text_role": "names a shared moment of pain in the viewer's own point of view",
+    "visual": "first-person camera, on-screen text 'POV:' line, everyday setting",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        6
+      ],
+      "role": "problem",
+      "visual": "first-person view, the frustration plays out in real time",
+      "line_role": "shows the pain without explaining it"
+    },
+    {
+      "t": [
+        6,
+        10
+      ],
+      "role": "agitate",
+      "visual": "quick reaction close-up, deadpan stare at camera",
+      "line_role": "escalates the pain one notch"
+    },
+    {
+      "t": [
+        10,
+        15
+      ],
+      "role": "solution",
+      "visual": "product enters frame and fixes it, same first-person view",
+      "line_role": "the relief, in one move"
+    },
+    {
+      "t": [
+        15,
+        18
+      ],
+      "role": "cta",
+      "visual": "product on surface, caption card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "trending-style lo-fi loop, low",
+    "sfx": [
+      "one comedic sting on the reaction"
+    ],
+    "voice": "no VO; on-screen text carries the story"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

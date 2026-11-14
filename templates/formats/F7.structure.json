@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F7",
+    "name": "Made me buy it haul"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "haul",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "number_shock",
+    "text_role": "announces a ridiculous number of purchases like a confession",
+    "visual": "creator surrounded by bags, number on screen",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        6
+      ],
+      "role": "setup",
+      "visual": "creator sits among a pile of bags, direct address",
+      "line_role": "how it started"
+    },
+    {
+      "t": [
+        6,
+        16
+      ],
+      "role": "demo",
+      "visual": "quick-fire item reveals, one per second-ish, jump cuts",
+      "line_role": "item, price, one-word reaction each"
+    },
+    {
+      "t": [
+        16,
+        19
+      ],
+      "role": "twist",
+      "visual": "creator holds up the one item that justifies everything",
+      "line_role": "the favourite, with a straight face"
+    },
+    {
+      "t": [
+        19,
+        22
+      ],
+      "role": "cta",
+      "visual": "product close-up with price card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "upbeat pop loop",
+    "sfx": [
+      "pop on each item reveal"
+    ],
+    "voice": "creator VO, excited"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

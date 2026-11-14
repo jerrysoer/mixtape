@@ -1,0 +1,17 @@
+{
+  "_note": "Fictional brands only (docs/AutoClone-Extras.md §1). Unit-test fixtures for ranking and the winner score. Never replace with real brands.",
+  "ads": [
+    { "brand": "Fuelwell", "id": "fw1", "format": "video", "days_running": 286, "variants": 14, "est_reach": 2100000, "title": "Gym floor product toss", "format_pattern": "demo_in_context", "hook_pattern": "contrarian_reveal" },
+    { "brand": "Fuelwell", "id": "fw2", "format": "video", "days_running": 253, "variants": 9, "est_reach": 870000, "title": "Founder: stop doing this", "format_pattern": "founder_talking_head", "hook_pattern": "stop_doing_x" },
+    { "brand": "Fuelwell", "id": "fw3", "format": "video", "days_running": 234, "variants": 11, "est_reach": 1100000, "title": "POV: lazy but trying", "format_pattern": "pov_relatable", "hook_pattern": "pov" },
+    { "brand": "Fuelwell", "id": "fw4", "format": "video", "days_running": 175, "variants": 6, "est_reach": 1700000, "title": "Creator morning routine", "format_pattern": "creator_routine", "hook_pattern": "day_in_life" },
+    { "brand": "Fuelwell", "id": "fw5", "format": "image", "days_running": 142, "variants": 22, "est_reach": 640000, "title": "Price-per-meal compare", "format_pattern": "comparison_static", "hook_pattern": "number_shock" },
+    { "brand": "Fuelwell", "id": "fw6", "format": "video", "days_running": 61, "variants": 3, "est_reach": 410000, "title": "Unboxing ASMR", "format_pattern": "asmr_unbox", "hook_pattern": "sensory" },
+    { "brand": "Fuelwell", "id": "fw7", "format": "carousel", "days_running": 38, "variants": 2, "est_reach": 220000, "title": "5 myths about protein", "format_pattern": "listicle", "hook_pattern": "myth_bust" },
+    { "brand": "Fuelwell", "id": "fw8", "format": "video", "days_running": 12, "variants": 1, "est_reach": 95000, "title": "New flavor launch", "format_pattern": "launch", "hook_pattern": "announcement" },
+    { "brand": "Northpeak Sleep", "id": "np1", "format": "video", "days_running": 311, "variants": 18, "est_reach": 3000000, "title": "Your pillow is lying", "format_pattern": "founder_talking_head", "hook_pattern": "contrarian_reveal" },
+    { "brand": "Northpeak Sleep", "id": "np2", "format": "video", "days_running": 198, "variants": 7, "est_reach": 1200000, "title": "Sleep score before/after", "format_pattern": "before_after", "hook_pattern": "number_shock" },
+    { "brand": "Northpeak Sleep", "id": "np3", "format": "image", "days_running": 120, "variants": 15, "est_reach": 500000, "title": "Customer review collage", "format_pattern": "social_proof", "hook_pattern": "testimonial" },
+    { "brand": "Northpeak Sleep", "id": "np4", "format": "video", "days_running": 44, "variants": 2, "est_reach": 300000, "title": "3am wake-up POV", "format_pattern": "pov_relatable", "hook_pattern": "pov" }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F3",
+    "name": "Read-aloud 5-star review"
+  },
+  "duration_s": 20,
+  "aspect": "9:16",
+  "format": "review_readaloud",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "testimonial",
+    "text_role": "reads one line of a customer review as if it were obviously true",
+    "visual": "phone screen with a 5-star review, voice reads it, stars animate in",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        8
+      ],
+      "role": "social_proof",
+      "visual": "review text scrolls on a phone, zoomed, stars highlighted",
+      "line_role": "the reviewer's own words, first person, as if telling a friend what happened (never the rating again)"
+    },
+    {
+      "t": [
+        8,
+        13
+      ],
+      "role": "demo",
+      "visual": "product in use matching what the review claims, handheld",
+      "line_role": "the thing the review described, happening; plain words for what we see"
+    },
+    {
+      "t": [
+        13,
+        17
+      ],
+      "role": "social_proof",
+      "visual": "rapid montage of more star ratings and short review snippets",
+      "line_role": "one or two more specific gripes, said fondly; still no rating"
+    },
+    {
+      "t": [
+        17,
+        20
+      ],
+      "role": "cta",
+      "visual": "product hero + rating badge end card",
+      "line_role": "the product name and one dry human last line; the offer only if the brief has one"
+    }
+  ],
+  "audio": {
+    "music": "light upbeat bed",
+    "sfx": [
+      "notification ding per review"
+    ],
+    "voice": "creator VO reading in a calm, earnest voice"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

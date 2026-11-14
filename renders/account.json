@@ -1,0 +1,19 @@
+{
+  "_note": "Account-wide render choices (Jerry, 2026-11-06). The only tracked file under renders/.",
+  "narrator": {
+    "provider": "elevenlabs",
+    "model": "eleven_v3",
+    "model_motion": "eleven_v4",
+    "voice_id": "eXpIbVcVbLo8ZJQDlDnl",
+    "words_per_second": { "eleven_v4": 2.2 },
+    "voice_settings": { "stability": 0.35, "similarity_boost": 0.8 },
+    "delivery_tag": "[casual, amused, a little breathless]",
+    "name": "PD audition siren",
+    "why": "Young American social-media voice described for commercials; fits Commercial Break's creator-ad parodies. Picked by Claude on Jerry's instruction."
+  },
+  "style_default": "late-90s home video still, slight VHS grain, warm tungsten lamp light, 9:16",
+  "captions": {
+    "font": "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf",
+    "words_per_chunk": 3
+  }
+}

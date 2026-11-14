@@ -1,0 +1,57 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F10",
+    "name": "Value justification (girl math)"
+  },
+  "duration_s": 18,
+  "aspect": "9:16",
+  "format": "value_justification",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "number_shock",
+    "text_role": "starts justifying a purchase with suspicious maths",
+    "visual": "creator holding the product, a price on screen",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        12
+      ],
+      "role": "proof",
+      "visual": "on-screen maths builds line by line, creator nods along",
+      "line_role": "each line of the cost-per-use logic"
+    },
+    {
+      "t": [
+        12,
+        15
+      ],
+      "role": "punchline",
+      "visual": "the maths lands on 'basically free'",
+      "line_role": "the absurd conclusion"
+    },
+    {
+      "t": [
+        15,
+        18
+      ],
+      "role": "cta",
+      "visual": "product hero with the final number",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "playful pizzicato or pop",
+    "sfx": [
+      "cash register ding at the total"
+    ],
+    "voice": "creator VO, conspiratorial"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

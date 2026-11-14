@@ -1,0 +1,64 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F12",
+    "name": "Podcast clip ad"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "podcast_clip",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "testimonial",
+    "text_role": "drops in mid-conversation like a clipped podcast moment",
+    "visual": "two hosts at mics, podcast lower-third, captions",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        9
+      ],
+      "role": "setup",
+      "visual": "two-shot of hosts, one leans into the mic",
+      "line_role": "host 1 tees up the topic"
+    },
+    {
+      "t": [
+        9,
+        16
+      ],
+      "role": "social_proof",
+      "visual": "close-up of host 2 telling a personal story about the product",
+      "line_role": "the earnest testimony"
+    },
+    {
+      "t": [
+        16,
+        19
+      ],
+      "role": "punchline",
+      "visual": "reaction shot of host 1, beat of silence",
+      "line_role": "deadpan reaction"
+    },
+    {
+      "t": [
+        19,
+        22
+      ],
+      "role": "cta",
+      "visual": "product on the desk between mics, end card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "none; room tone only",
+    "sfx": [],
+    "voice": "two hosts, conversational"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

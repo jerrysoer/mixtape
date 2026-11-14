@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F4",
+    "name": "Before / after"
+  },
+  "duration_s": 18,
+  "aspect": "9:16",
+  "format": "before_after",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "before_after",
+    "text_role": "promises a transformation and shows the 'before' first",
+    "visual": "split screen, 'BEFORE' label on the left half",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        6
+      ],
+      "role": "before",
+      "visual": "flat lighting, unflattering angle, the subject looks tired",
+      "line_role": "names the before state plainly"
+    },
+    {
+      "t": [
+        6,
+        9
+      ],
+      "role": "demo",
+      "visual": "product applied or used, quick close-up",
+      "line_role": "the one step that changes it"
+    },
+    {
+      "t": [
+        9,
+        15
+      ],
+      "role": "after",
+      "visual": "same framing as before, better light, subject proud",
+      "line_role": "the reveal, held long enough to read"
+    },
+    {
+      "t": [
+        15,
+        18
+      ],
+      "role": "cta",
+      "visual": "before and after side by side, offer card",
+      "line_role": "one allowed result, then a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the"
+    }
+  ],
+  "audio": {
+    "music": "build-up then drop at the reveal",
+    "sfx": [
+      "whoosh into the after shot"
+    ],
+    "voice": "creator VO, confident"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

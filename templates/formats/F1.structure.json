@@ -1,0 +1,64 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F1",
+    "name": "Founder story"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "founder_talking_head",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "stop_doing_x",
+    "text_role": "founder admits the moment they walked away from the safe path",
+    "visual": "founder on camera, eye level, kitchen or garage, text card names the leap",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        7
+      ],
+      "role": "setup",
+      "visual": "founder talking head, slow push-in, warm practical light",
+      "line_role": "backstory in one breath: the old life and why it felt wrong"
+    },
+    {
+      "t": [
+        7,
+        12
+      ],
+      "role": "problem",
+      "visual": "cutaways of the founder struggling with the old way, handheld",
+      "line_role": "the specific pain that started it"
+    },
+    {
+      "t": [
+        12,
+        17
+      ],
+      "role": "solution",
+      "visual": "first prototype on a workbench, close-up hands",
+      "line_role": "what they built and why it is different"
+    },
+    {
+      "t": [
+        17,
+        22
+      ],
+      "role": "cta",
+      "visual": "founder holds the product to camera, end card with offer",
+      "line_role": "asks the viewer in, in the founder's words; a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never"
+    }
+  ],
+  "audio": {
+    "music": "soft piano or acoustic, builds slightly",
+    "sfx": [],
+    "voice": "founder on camera, sincere, direct address"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

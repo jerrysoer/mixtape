@@ -1,0 +1,69 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F6",
+    "name": "Unboxing ASMR"
+  },
+  "duration_s": 20,
+  "aspect": "9:16",
+  "format": "asmr_unbox",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "sensory",
+    "text_role": "asks for sound on before anything happens",
+    "visual": "macro shot of a sealed box, 'sound on' text",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        8
+      ],
+      "role": "demo",
+      "visual": "macro hands slowly opening packaging, every sound exaggerated",
+      "line_role": "no line; sound only"
+    },
+    {
+      "t": [
+        8,
+        14
+      ],
+      "role": "reveal",
+      "visual": "product lifted into soft top light, slow rotate",
+      "line_role": "names the product in a whisper"
+    },
+    {
+      "t": [
+        14,
+        18
+      ],
+      "role": "demo",
+      "visual": "product switched on or used, close mic",
+      "line_role": "the most satisfying sound"
+    },
+    {
+      "t": [
+        18,
+        20
+      ],
+      "role": "cta",
+      "visual": "product rests on box, small caption",
+      "line_role": "whispered: a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "none or very soft pad",
+    "sfx": [
+      "tape rip",
+      "paper rustle",
+      "clicks",
+      "close-mic foley"
+    ],
+    "voice": "whisper VO, sparse"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

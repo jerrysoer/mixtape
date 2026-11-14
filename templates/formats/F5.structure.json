@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F5",
+    "name": "Problem, agitate, solve"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "problem_agitate_solve",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "contrarian_reveal",
+    "text_role": "tells the viewer the thing they accept as normal is actually broken",
+    "visual": "bold text card over a close-up of the everyday problem",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        7
+      ],
+      "role": "problem",
+      "visual": "close-up of the problem happening, slightly exaggerated",
+      "line_role": "names the problem"
+    },
+    {
+      "t": [
+        7,
+        12
+      ],
+      "role": "agitate",
+      "visual": "montage of the problem getting worse, faster cuts",
+      "line_role": "makes it feel costly"
+    },
+    {
+      "t": [
+        12,
+        18
+      ],
+      "role": "solution",
+      "visual": "product solves it in one clean demo, steady camera",
+      "line_role": "the fix, with one concrete number"
+    },
+    {
+      "t": [
+        18,
+        22
+      ],
+      "role": "cta",
+      "visual": "product hero, offer card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "tense pulse, resolves to major key at the fix",
+    "sfx": [
+      "record scratch at the agitate peak"
+    ],
+    "voice": "creator VO, punchy"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

@@ -1,0 +1,67 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F13",
+    "name": "Subscription unboxing"
+  },
+  "duration_s": 20,
+  "aspect": "9:16",
+  "format": "subscription_unbox",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "sensory",
+    "text_role": "teases a monthly box that arrives at the door",
+    "visual": "doorstep shot of a branded box, 'month 1' label",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        6
+      ],
+      "role": "setup",
+      "visual": "box arrives, creator carries it in",
+      "line_role": "what the subscription promises"
+    },
+    {
+      "t": [
+        6,
+        14
+      ],
+      "role": "reveal",
+      "visual": "items lifted out one by one, overhead shot",
+      "line_role": "each item named with a tiny reaction"
+    },
+    {
+      "t": [
+        14,
+        17
+      ],
+      "role": "offer",
+      "visual": "plan card with price per month",
+      "line_role": "the plan and price"
+    },
+    {
+      "t": [
+        17,
+        20
+      ],
+      "role": "cta",
+      "visual": "all items laid out, end card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "bright pop bed",
+    "sfx": [
+      "box tape rip",
+      "tissue paper"
+    ],
+    "voice": "creator VO, cheerful"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}

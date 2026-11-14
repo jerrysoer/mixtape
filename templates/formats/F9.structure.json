@@ -1,0 +1,66 @@
+{
+  "source": {
+    "kind": "template",
+    "id": "F9",
+    "name": "Morning routine / GRWM"
+  },
+  "duration_s": 22,
+  "aspect": "9:16",
+  "format": "creator_routine",
+  "hook": {
+    "t": [
+      0,
+      2
+    ],
+    "pattern": "day_in_life",
+    "text_role": "opens a wellness routine at an oddly specific time",
+    "visual": "alarm clock close-up with the time, soft morning light",
+    "candidates": []
+  },
+  "beats": [
+    {
+      "t": [
+        2,
+        6
+      ],
+      "role": "setup",
+      "visual": "creator wakes, stretches, soft window light",
+      "line_role": "the time and the vibe"
+    },
+    {
+      "t": [
+        6,
+        16
+      ],
+      "role": "demo",
+      "visual": "numbered routine steps, one shot each, step number on screen",
+      "line_role": "each step named in a few words"
+    },
+    {
+      "t": [
+        16,
+        19
+      ],
+      "role": "twist",
+      "visual": "the product step, framed as the secret",
+      "line_role": "why this step matters most"
+    },
+    {
+      "t": [
+        19,
+        22
+      ],
+      "role": "cta",
+      "visual": "product on the counter, morning light, end card",
+      "line_role": "a person's last line, not a slogan: the brief's offer, else the product plus one dry line; never 'today', never the hook again"
+    }
+  ],
+  "audio": {
+    "music": "airy lo-fi",
+    "sfx": [
+      "soft whoosh between steps"
+    ],
+    "voice": "creator VO, calm"
+  },
+  "rules": "roles and patterns only - no original lines, footage, audio or likeness"
+}
